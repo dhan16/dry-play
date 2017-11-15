@@ -27,7 +27,7 @@ int sect(int j,v o,v d,float &t){
     return 0;
 }
 v trace(v o,v d,int D){
-    int h,i,j,k;
+    int h,i,j;
     v c,n,L,J;
     c.x=.3,c.y=.5,c.z=.8;
     for(Tm=999,h=0,i=NS;i--; )
