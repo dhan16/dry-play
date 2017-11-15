@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.8)
+project(week1)
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(dice dice.cpp)
+add_executable(cswap cswap.c)
+add_executable(swap swap.cpp)
+add_executable(generic_swap generic_swap.cpp)
+add_executable(generic_sum generic_sum.cpp)
+add_executable(assignment assignment.cpp)
