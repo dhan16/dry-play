@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
 
 @Injectable()
@@ -12,8 +13,10 @@ export class AuthService {
     responseType: 'token id_token',
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     redirectUri: AUTH_CONFIG.callbackURL,
-    scope: 'openid'
+    scope: 'openid profile'
   });
+
+  userProfile: any;
 
   constructor(public router: Router) {}
 
@@ -32,6 +35,21 @@ export class AuthService {
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
+    });
+  }
+
+  public getProfile(cb): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access token must exist to fetch profile');
+    }
+
+    const self = this;
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      cb(err, profile);
     });
   }
 
