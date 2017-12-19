@@ -6,8 +6,8 @@ interface AuthConfig {
 }
 
 export const AUTH_CONFIG: AuthConfig = {
-  clientID: 'LejDX0O6TCLHmpj6tM9CeufbIlhsbXsv',
-  domain: 'dhan16.eu.auth0.com',
+  clientID: 'SfrzkiBBTmMnjS25roizCrJO3PbwDB3E',
+  domain: 'dry-play.auth0.com',
   callbackURL: 'http://localhost:4200',
-  audience: 'https://dhan16-api1.com',
+  audience: 'https://dry-play-api1.com',
 };

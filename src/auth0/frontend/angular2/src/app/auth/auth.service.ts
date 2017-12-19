@@ -13,7 +13,7 @@ export class AuthService {
     responseType: 'token id_token',
     audience: AUTH_CONFIG.audience,
     redirectUri: AUTH_CONFIG.callbackURL,
-    scope: 'openid profile read:messages'
+    scope: 'openid profile read:messages write:messages read:group_messages'
   });
 
   userProfile: any;
@@ -55,8 +55,8 @@ export class AuthService {
 
   private setSession(authResult): void {
     // Set the time that the access token will expire at
+    console.log(authResult);
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    console.log(authResult.accessToken);
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
