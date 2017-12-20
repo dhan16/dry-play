@@ -1,4 +1,5 @@
 function (user, context, callback) {
+  // add permissions to scope
   var permissions = user.permissions || [];
   var requestedScopes = context.request.body.scope || context.request.query.scope;
   var filteredScopes = requestedScopes.split(' ').filter( function(x) {
@@ -6,6 +7,12 @@ function (user, context, callback) {
   });
   Array.prototype.push.apply(filteredScopes, permissions);
   context.accessToken.scope = filteredScopes.join(' ');
+
+  // add groups using "Custom Claims". Ref: https://auth0.com/docs/scopes/current#example-add-custom-claims
+  var groups = user.groups || [];
+  var namespace = 'https://userinfo/';
+  context.accessToken[namespace + 'groups'] = groups;
+  context.idToken[namespace + 'groups'] = groups;
 
   callback(null, user, context);
 }
