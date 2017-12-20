@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
 
   auth0 = new auth0.WebAuth({
-    clientID: AUTH_CONFIG.clientID,
-    domain: AUTH_CONFIG.domain,
+    clientID: environment.auth0.clientID,
+    domain: environment.auth0.domain,
+    redirectUri: environment.auth0.callbackURL,
+    audience: environment.auth0.audience,
     responseType: 'token id_token',
-    audience: AUTH_CONFIG.audience,
-    redirectUri: AUTH_CONFIG.callbackURL,
     scope: 'openid profile' // permissions are added to returned scope by the rule in access_token_scopes_rule.txt
   });
 
@@ -69,7 +69,7 @@ export class AuthService {
     localStorage.removeItem('expires_at');
     // logout from auth0
     this.auth0.logout({
-      returnTo: AUTH_CONFIG.callbackURL
+      returnTo: environment.auth0.callbackURL
     });
   }
 

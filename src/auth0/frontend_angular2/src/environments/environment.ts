@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  auth0: {
+    // client
+    clientID: 'SfrzkiBBTmMnjS25roizCrJO3PbwDB3E',
+    domain: 'dry-play.auth0.com',
+    callbackURL: 'http://localhost:4200',
+    // api
+    audience: 'https://dry-play-api1.com',
+  },
 };
