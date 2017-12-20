@@ -6,7 +6,11 @@ Please check [Quickstart](https://auth0.com/docs/quickstart/backend/django) to b
 
 ## Getting Started
 
-[sign up](https://auth0.com) for your Auth0 account and create a new client in the [dashboard](https://manage.auth0.com). Find the **domain** and **client ID** from the settings area and add the URL for your application to the **Allowed Callback URLs** box. (eg `http://localhost:4200`).
+1. [sign up](https://auth0.com) for your Auth0 account and create a new client in the [dashboard](https://manage.auth0.com). Find the **domain** and **client ID** from the settings area and add the URL for your application to the **Allowed Callback URLs** box. (eg `http://localhost:4200`).
+
+2. Authorization
+    * Setup the Authorization extension. Ref: https://auth0.com/docs/extensions/authorization-extension/v2#how-to-install
+    * This is crucial: DO NOT ADD ANY SCOPES to the backend API. Instead add permissions to the Authorization extension and, after publishing the authorization rule, add the rule in access_token_scopes_rule.txt which adds the permissions to the returned scopes. The backend API works off these scopes.
 
 
 ## Frontend

@@ -13,7 +13,7 @@ export class AuthService {
     responseType: 'token id_token',
     audience: AUTH_CONFIG.audience,
     redirectUri: AUTH_CONFIG.callbackURL,
-    scope: 'openid profile read:messages write:messages read:group_messages'
+    scope: 'openid profile' // permissions are added to returned scope by the rule in access_token_scopes_rule.txt
   });
 
   userProfile: any;

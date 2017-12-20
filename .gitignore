@@ -5,3 +5,4 @@ cmake-build-debug
 build
 1.tga
 db.sqlite3
+*.pyc
