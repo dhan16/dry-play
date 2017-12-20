@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
-import { Http } from '@angular/http';
+import {Http, Response} from '@angular/http';
 import { AuthService } from './../auth/auth.service';
 import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-ping',
@@ -19,23 +20,31 @@ export class PingComponent implements OnInit {
   ngOnInit() {
   }
 
-  public ping(): void {
-    this.message = '';
-    this.http.get(`${this.API_URL}/public/`)
-      .map(res => {console.log(res); return res.text(); })
+  private handle(response: Observable<Response>): void {
+    response.map(res => {console.log(res); return res.text(); })
       .subscribe(
         message => this.message = message,
         error => this.message = error
       );
+}
+
+  public ping(): void {
+    this.message = '';
+    this.handle(this.http.get(`${this.API_URL}/public/`));
   }
 
   public securedPing(): void {
     this.message = '';
-    this.authHttp.get(`${this.API_URL}/private/`)
-      .map(res => {console.log(res); return res.json(); })
-      .subscribe(
-        data => {console.log(data); this.message = data.message; },
-        error => {console.log(error); this.message = error; },
-      );
+    this.handle(this.authHttp.get(`${this.API_URL}/private/`));
+  }
+
+  public readMessages(): void {
+    this.message = '';
+    this.handle(this.authHttp.get(`${this.API_URL}/private_read_messages/`));
+  }
+
+  public readGroupMessages(): void {
+    this.message = '';
+    this.handle(this.authHttp.get(`${this.API_URL}/private_read_groupmessages/`));
   }
 }
