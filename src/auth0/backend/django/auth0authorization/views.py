@@ -1,8 +1,8 @@
-import os
 import jwt
 import json
 from functools import wraps
 
+from django.conf import settings
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from six.moves.urllib import request as req
@@ -31,8 +31,8 @@ def requires_scope(required_scope):
         @wraps(f)
         def decorated(*args, **kwargs):
             token = get_token_auth_header(args[0])
-            AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
-            API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
+            AUTH0_DOMAIN = settings.AUTH0_DOMAIN
+            API_IDENTIFIER = settings.API_IDENTIFIER
             jsonurl = req.urlopen('https://' + AUTH0_DOMAIN + '/.well-known/jwks.json')
             jwks = json.loads(jsonurl.read())
             cert = '-----BEGIN CERTIFICATE-----\n' + jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
