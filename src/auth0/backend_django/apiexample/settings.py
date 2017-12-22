@@ -14,7 +14,6 @@ import os
 import json
 from six.moves.urllib import request
 
-from dotenv import load_dotenv, find_dotenv
 from cryptography.x509 import load_pem_x509_certificate
 from cryptography.hazmat.backends import default_backend
 
@@ -141,16 +140,11 @@ REST_FRAMEWORK = {
     ),
 }
 
-ENV_FILE = find_dotenv()
-if ENV_FILE:
-    load_dotenv(ENV_FILE)
-
-AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
-API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
+AUTH0_DOMAIN='dry-play.auth0.com'
+API_IDENTIFIER='https://dry-play-api1.com'
 PUBLIC_KEY = None
 JWT_ISSUER = None
 
-# If AUTH0_DOMAIN is defined, load the jwks.json
 if AUTH0_DOMAIN:
     jsonurl = request.urlopen('https://' + AUTH0_DOMAIN + '/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())

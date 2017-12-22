@@ -17,12 +17,12 @@ This sample demonstrates how to add authentication to an Angular SPA which uses 
     2. cd frontend_angular && npm install
 
 ### Backend
-    1. change backend_django/.env
+    1. change backend_django/apiexample/settings.py
         AUTH0_DOMAIN=example.auth0.com
         API_IDENTIFIER=YOUR_API_AUDIENCE
     2. python3 -m venv ~/work/python-virtualenvs/dry-play-auth0
     3. source ~/work/python-virtualenvs/dry-play-auth0/bin/activate
-    4. pip3 install -r ~/work/dry/dry-play/src/auth0/backend/django/requirements.txt
+    4. pip3 install -r ~/work/dry/dry-play/src/auth0/backend_django/requirements.txt
 
 ## Run
 
