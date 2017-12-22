@@ -162,7 +162,7 @@ if AUTH0_DOMAIN:
 
 JWT_AUTH = {
     'JWT_PAYLOAD_GET_USERNAME_HANDLER':
-        'auth0authorization.auth0.jwt_get_username_from_payload_handler',
+        'auth0_util.auth0.jwt_get_username_from_payload_handler',
     'JWT_PUBLIC_KEY': PUBLIC_KEY,
     'JWT_ALGORITHM': 'RS256',
     'JWT_AUDIENCE': API_IDENTIFIER,

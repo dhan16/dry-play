@@ -12,7 +12,7 @@ _ACCESS_TOKEN_FIELD_GROUPS = 'https://userinfo/' + 'groups'
 
 
 def _logger():
-    return logging.getLogger('auth0')
+    return logging.getLogger('auth0_util')
 
 
 def jwt_get_username_from_payload_handler(payload):
