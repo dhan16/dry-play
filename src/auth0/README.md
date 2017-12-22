@@ -27,7 +27,7 @@ This sample demonstrates how to add authentication to an Angular SPA which uses 
 ## Run
 
 ### Frontend
-    npm start
+    cd frontend_angular2 && npm start
 
 ### Backend
     1. source ~/work/python-virtualenvs/dry-play-auth0/bin/activate

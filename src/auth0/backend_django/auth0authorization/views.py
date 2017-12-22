@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view
 
-from auth0authorization.auth import *
+from auth0authorization.auth0 import *
 
 def public(request):
     return HttpResponse("All good. You don't need to be authenticated to call this")
@@ -18,7 +18,7 @@ def private_read_messages(request):
 
 
 @api_view(['GET'])
-@requires_scope_and_group('read:group_messages')
+@requires_scope('read:group_messages')
 def private_read_groupmessages(request):
-    return HttpResponse("All good. You're authenticated and can read messages for the groups:%s"
-                        % ' '.join(user_groups(request)))
+    groups = get_user_groups(request.user)
+    return HttpResponse("All good. You're authenticated and can read messages for the groups %s" % " ".join(groups))

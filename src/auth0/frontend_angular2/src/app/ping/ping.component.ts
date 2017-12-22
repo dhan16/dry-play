@@ -21,7 +21,7 @@ export class PingComponent implements OnInit {
   }
 
   private handle(response: Observable<Response>): void {
-    response.map(res => {console.log(res); return res.text(); })
+    response.map(res => res.text())
       .subscribe(
         message => this.message = message,
         error => this.message = error
