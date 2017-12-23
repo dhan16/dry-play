@@ -2,8 +2,9 @@ from rest_framework.decorators import api_view
 
 from django.http import HttpResponse
 
-from auth0_util import auth0
-from auth0_util.auth0 import requires_scope
+import drypy.django.user
+from drypy.django import auth0
+from drypy.django.auth0 import requires_scope
 
 
 def public(request):
@@ -24,5 +25,5 @@ def private_read_messages(request):
 @api_view(['GET'])
 @requires_scope('read:group_messages')
 def private_read_groupmessages(request):
-    groups = auth0.get_user_groups(request.user)
+    groups = drypy.django.user.get_user_groups(request.user)
     return HttpResponse("All good. You're authenticated and can read messages for the groups %s" % " ".join(groups))
