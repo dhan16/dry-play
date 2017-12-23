@@ -34,6 +34,10 @@ This sample demonstrates how to add authentication to an Angular SPA which uses 
     2. cd backend_django && python manage.py migrate && python manage.py runserver 0.0.0.0:3010
 
 
+### MFA
+    To use MFA, simply turn on Auth0 Guardian from auth0 dashboard -> Multifactor Auth -> Push Notifications/SMS
+
+
 ## References
 
     1. https://auth0.com/docs/architecture-scenarios/application/spa-api
