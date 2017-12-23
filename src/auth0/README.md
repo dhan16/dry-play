@@ -14,7 +14,7 @@ This sample demonstrates how to add authentication to an Angular SPA which uses 
 ## Setup
 
 ### Frontend
-    1. Add the **client ID** and **domain** to frontend_angular2/src/app/auth/auth0-variables.ts.
+    1. Add the **client ID** **domain** **callbackURL** **audience** to frontend_angular2/src/environments/environment.ts.
     2. cd frontend_angular && npm install
 
 ### Backend
