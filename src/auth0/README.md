@@ -2,7 +2,6 @@
 
 This sample demonstrates how to add authentication to an Angular SPA which uses a Django REST API as a backend.
 
-
 ## Getting Started
     1. [sign up](https://auth0.com) for your Auth0 account. Turn on MFA from "View profile".
     2. Create a new client in the [dashboard](https://manage.auth0.com). Find the **domain** and **client ID** from the settings area and add the URL for your application to the **Allowed Callback URLs** box. (eg `http://localhost:4200`).
@@ -10,13 +9,10 @@ This sample demonstrates how to add authentication to an Angular SPA which uses 
         * Setup the Authorization extension. Ref: https://auth0.com/docs/extensions/authorization-extension/v2#how-to-install
         * DO NOT ADD ANY SCOPES to the backend API. Instead add permissions to the Authorization extension and, after publishing the authorization rule, add the rule in access_token_scopes_rule.txt which adds the permissions to the returned scopes. The backend API works off these scopes.
 
-
 ## Setup
-
 ### Frontend
     1. Add the **client ID** **domain** **callbackURL** **audience** to frontend_angular2/src/environments/environment.ts.
-    2. cd frontend_angular && npm install
-
+    2. cd frontend_angular2 && npm install
 ### Backend
     1. change backend_django/apiexample/settings.py
         AUTH0_DOMAIN=example.auth0.com
@@ -26,18 +22,14 @@ This sample demonstrates how to add authentication to an Angular SPA which uses 
     4. pip3 install -r ~/work/dry/dry-play/src/auth0/backend_django/requirements.txt
 
 ## Run
-
 ### Frontend
     cd frontend_angular2 && npm start
-
 ### Backend
     1. source ~/work/python-virtualenvs/dry-play-auth0/bin/activate
     2. cd backend_django && python manage.py migrate && python manage.py runserver 0.0.0.0:3010
 
-
-### MFA
+## MFA
     To turn on MFA for your users, simply turn on Auth0 Guardian from auth0 dashboard -> Multifactor Auth -> Push Notifications/SMS
-
 
 ## References
 
