@@ -1,5 +1,3 @@
-import logging
-
 from functools import wraps
 
 from django.http import HttpResponse
