@@ -11,7 +11,7 @@ def _logger():
 def ensure_user_and_groups(username, groupnames):
     user, created = User.objects.get_or_create(username=username)
     if created:
-        _logger().debug('Created user:%s' % user)
+        _logger().info('Created user:%s' % user)
 
     current_groupnames = get_user_groups(user)
     current_groupnames.sort()
@@ -22,7 +22,7 @@ def ensure_user_and_groups(username, groupnames):
 
 @transaction.atomic
 def _set_user_groups(user, current_groupnames, groupnames):
-    _logger().debug('Set groups for user:{0} current_groupnames:{1} new_groupnames:{2}'.format(user,
+    _logger().info('Set groups for user:{0} current_groupnames:{1} new_groupnames:{2}'.format(user,
                                                                                                current_groupnames,
                                                                                                groupnames))
     # ' '.join(current_groupnames), ' '.join(groupnames))
@@ -30,9 +30,9 @@ def _set_user_groups(user, current_groupnames, groupnames):
     for groupname in groupnames:
         group, created = Group.objects.get_or_create(name=groupname)
         if created:
-            _logger().debug('Created group:%s' % group)
+            _logger().info('Created group:%s' % group)
         group.user_set.add(user)
-        _logger().debug('Added user %s to group %s' % (user, group))
+        _logger().info('Added user %s to group %s' % (user, group))
 
 
 def get_user_groups(user):

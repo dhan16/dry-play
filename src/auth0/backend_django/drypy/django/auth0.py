@@ -10,10 +10,6 @@ from drypy.django import user
 _ACCESS_TOKEN_FIELD_GROUPS = 'https://userinfo/' + 'groups'
 
 
-def _logger():
-    return logging.getLogger(__name__)
-
-
 def jwt_get_username_from_payload_handler(payload):
     sub = payload.get('sub').replace('|', '.')
     # TODO optimize database access by caching the user
