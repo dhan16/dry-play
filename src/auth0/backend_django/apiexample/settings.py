@@ -1,3 +1,4 @@
+import logging
 import os
 from drypy.django import auth0_settings
 
@@ -21,6 +22,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
 # Auth0
 AUTH0_DOMAIN = 'dry-play.auth0.com'
