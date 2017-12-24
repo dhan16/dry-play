@@ -3,17 +3,6 @@ from functools import wraps
 from django.http import HttpResponse
 from rest_framework_jwt import authentication
 
-from drypy.django import user
-
-_ACCESS_TOKEN_FIELD_GROUPS = 'https://userinfo/' + 'groups'
-
-
-def jwt_get_username_from_payload_handler(payload):
-    sub = payload.get('sub').replace('|', '.')
-    # TODO optimize database access by caching the user
-    user.ensure_user_and_groups(sub, payload.get(_ACCESS_TOKEN_FIELD_GROUPS))
-    return sub
-
 
 def _get_token_auth_header(request):
     """Obtains the access token from the Authorization Header

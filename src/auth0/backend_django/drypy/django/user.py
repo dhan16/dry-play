@@ -25,7 +25,6 @@ def _set_user_groups(user, current_groupnames, groupnames):
     _logger().info('Set groups for user:{0} current_groupnames:{1} new_groupnames:{2}'.format(user,
                                                                                                current_groupnames,
                                                                                                groupnames))
-    # ' '.join(current_groupnames), ' '.join(groupnames))
     user.groups.clear()
     for groupname in groupnames:
         group, created = Group.objects.get_or_create(name=groupname)

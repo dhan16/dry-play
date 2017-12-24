@@ -3,7 +3,6 @@ from six.moves.urllib import request
 from cryptography.x509 import load_pem_x509_certificate
 from cryptography.hazmat.backends import default_backend
 
-
 INSTALLED_APPS = [
     'corsheaders',
     'django.contrib.auth',
@@ -46,7 +45,7 @@ def jwt_auth(auth0_domain, api_identifier):
     """
     return {
         'JWT_PAYLOAD_GET_USERNAME_HANDLER':
-            'drypy.django.auth0.jwt_get_username_from_payload_handler',
+            'drypy.django.auth0.user.jwt_get_username_from_payload_handler',
         'JWT_PUBLIC_KEY': _get_public_key(auth0_domain),
         'JWT_ALGORITHM': 'RS256',
         'JWT_AUDIENCE': api_identifier,

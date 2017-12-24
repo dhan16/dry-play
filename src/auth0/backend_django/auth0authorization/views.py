@@ -3,8 +3,7 @@ from rest_framework.decorators import api_view
 from django.http import HttpResponse
 
 import drypy.django.user
-from drypy.django import auth0
-from drypy.django.auth0 import requires_scope
+from drypy.django.auth0.scope import requires_scope
 
 
 def public(request):
@@ -12,18 +11,19 @@ def public(request):
 
 
 @api_view(['GET'])
-def private(request):
-    return HttpResponse("All good. You only get this message if you're authenticated")
+def private(request, username):
+    return HttpResponse("Hi {0}. All good. You only get this message if you're authenticated".format(username))
 
 
 @api_view(['GET'])
 @requires_scope('read:messages')
-def private_read_messages(request):
-    return HttpResponse("All good. You're authenticated and can read messages")
+def private_read_messages(request, username):
+    return HttpResponse("Hi {0}. All good. You're authenticated and can read messages".format(username))
 
 
 @api_view(['GET'])
 @requires_scope('read:group_messages')
-def private_read_groupmessages(request):
+def private_read_groupmessages(request, username):
     groups = drypy.django.user.get_user_groups(request.user)
-    return HttpResponse("All good. You're authenticated and can read messages for the groups %s" % " ".join(groups))
+    return HttpResponse("Hi {0}. All good. You're authenticated and can read messages for the groups {1}"
+                        .format( username, " ".join(groups)))

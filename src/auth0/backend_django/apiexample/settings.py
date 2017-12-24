@@ -1,7 +1,7 @@
 import logging
 import os
-from drypy.django import auth0_settings
 
+from drypy.django.auth0 import auth0_settings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
