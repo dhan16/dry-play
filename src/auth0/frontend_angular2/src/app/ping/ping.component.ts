@@ -15,7 +15,7 @@ export class PingComponent implements OnInit {
   API_URL = 'http://localhost:3010/api';
   message: string;
 
-  constructor(public auth: AuthService, public http: Http, public authHttp: AuthHttp) {}
+  constructor(public auth: AuthService, public http: Http, public authHttp: AuthHttp, public authService: AuthService) {}
 
   ngOnInit() {
   }
@@ -35,16 +35,16 @@ export class PingComponent implements OnInit {
 
   public securedPing(): void {
     this.message = '';
-    this.handle(this.authHttp.get(`${this.API_URL}/private/`));
+    this.handle(this.authHttp.get(`${this.API_URL}/private/${this.authService.getUsername()}/`));
   }
 
   public readMessages(): void {
     this.message = '';
-    this.handle(this.authHttp.get(`${this.API_URL}/private_read_messages/`));
+    this.handle(this.authHttp.get(`${this.API_URL}/private_read_messages/${this.authService.getUsername()}/`));
   }
 
   public readGroupMessages(): void {
     this.message = '';
-    this.handle(this.authHttp.get(`${this.API_URL}/private_read_groupmessages/`));
+    this.handle(this.authHttp.get(`${this.API_URL}/private_read_groupmessages/${this.authService.getUsername()}/`));
   }
 }

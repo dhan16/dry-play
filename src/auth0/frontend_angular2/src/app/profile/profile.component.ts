@@ -10,13 +10,13 @@ export class ProfileComponent implements OnInit {
 
   profile: any;
 
-  constructor(public auth: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    if (this.auth.userProfile) {
-      this.profile = this.auth.userProfile;
+    if (this.authService.userProfile) {
+      this.profile = this.authService.userProfile;
     } else {
-      this.auth.getProfile((err: any, profile: any) => {
+      this.authService.getProfile((err: any, profile: any) => {
         this.profile = profile;
       });
     }

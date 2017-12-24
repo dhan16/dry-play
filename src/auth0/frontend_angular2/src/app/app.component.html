@@ -11,7 +11,7 @@
 
       <button
         class="btn btn-primary btn-margin"
-        *ngIf="auth.isAuthenticated()"
+        *ngIf="authService.isAuthenticated()"
         routerLink="/profile">
           Profile
       </button>
@@ -23,15 +23,15 @@
 
       <button
         class="btn btn-primary btn-margin"
-        *ngIf="!auth.isAuthenticated()"
-        (click)="auth.login()">
+        *ngIf="!authService.isAuthenticated()"
+        (click)="authService.login()">
           Log In
       </button>
 
       <button
         class="btn btn-primary btn-margin"
-        *ngIf="auth.isAuthenticated()"
-        (click)="auth.logout()">
+        *ngIf="authService.isAuthenticated()"
+        (click)="authService.logout()">
           Log Out
       </button>
 
