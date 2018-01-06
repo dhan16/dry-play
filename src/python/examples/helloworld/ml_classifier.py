@@ -17,7 +17,7 @@ triangles = .5 + np.random.rand(2, N)
 
 plt.scatter(stars[0], stars[1], c='r', marker='*', s=100)
 plt.scatter(triangles[0], triangles[1], c='b', marker='^', s=100)
-plt.show()
+# plt.show()
 
 new_point = np.random.rand(2, 1)
 plt.scatter(new_point[0], new_point[1], c='k', marker='o', s=100)
