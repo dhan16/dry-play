@@ -3,6 +3,8 @@ from functools import wraps
 from django.http import HttpResponse
 from rest_framework_jwt import authentication
 
+from drypy.django.auth0.constants import GUEST
+
 
 def _get_token_auth_header(request):
     """Obtains the access token from the Authorization Header
@@ -20,6 +22,8 @@ def _has_scope(request, required_scope):
             required_scope (str): The scope required to access the resource
         """
     token = _get_token_auth_header(request)
+    if token == GUEST:
+        return False
     decoded = authentication.jwt_decode_handler(token)
     if decoded.get("scope"):
         token_scopes = decoded["scope"].split()

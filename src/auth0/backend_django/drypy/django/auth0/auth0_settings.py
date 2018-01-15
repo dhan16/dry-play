@@ -1,4 +1,7 @@
 import json
+import logging
+import urllib
+
 from six.moves.urllib import request
 from cryptography.x509 import load_pem_x509_certificate
 from cryptography.hazmat.backends import default_backend
@@ -25,6 +28,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'drypy.django.auth0.authentication.GuestAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
@@ -39,6 +43,15 @@ def _get_public_key(auth0_domain):
     return public_key
 
 
+def _get_public_key_or_none(auth0_domain):
+    try:
+        return _get_public_key(auth0_domain)
+    except urllib.URLError as ex:
+        print(ex)
+        logging.error('Unable to turn on JWT Authentication due to urllib2.URLError. Only guest authentication is on.')
+        return None
+
+
 def jwt_auth(auth0_domain, api_identifier):
     """
         Call this from settings.py only as JWT_AUTH=auth0_settings_jwt_auth(...
@@ -46,9 +59,9 @@ def jwt_auth(auth0_domain, api_identifier):
     return {
         'JWT_PAYLOAD_GET_USERNAME_HANDLER':
             'drypy.django.auth0.user.jwt_get_username_from_payload_handler',
-        'JWT_PUBLIC_KEY': _get_public_key(auth0_domain),
+        'JWT_PUBLIC_KEY': _get_public_key_or_none(auth0_domain),
         'JWT_ALGORITHM': 'RS256',
         'JWT_AUDIENCE': api_identifier,
         'JWT_ISSUER': 'https://' + auth0_domain + '/',
-        'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+        'JWT_AUTH_HEADER_PREFIX': 'JWT',
     }
