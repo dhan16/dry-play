@@ -13,6 +13,8 @@ def ensure_user_and_groups(username, groupnames):
     if created:
         _logger().info('Created user:%s' % user)
 
+    if groupnames is None:
+        return
     current_groupnames = get_user_groups(user)
     current_groupnames.sort()
     groupnames.sort()
