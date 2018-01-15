@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  JWT_AUTH_HEADER_PREFIX: 'JWT',
   auth0: {
     // client
     clientID: 'SfrzkiBBTmMnjS25roizCrJO3PbwDB3E',

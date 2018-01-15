@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
@@ -25,7 +25,7 @@ export class AuthService {
     this.auth0.authorize();
   }
 
-  public handleAuthentication(navigateTo = ['/home']): void {
+  public handleAuthentication(navigateTo = ['/']): void {
     this.auth0.parseHash((err: any, authResult: any) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
@@ -47,12 +47,12 @@ export class AuthService {
     return localStorage.getItem('nickname');
   }
 
-  public getToken() {
-    const accessToken = localStorage.getItem('access_token');
-    if (!accessToken) {
-      throw new Error('Not logged in');
-    }
-    return accessToken;
+  private getToken() {
+    return localStorage.getItem('access_token');
+  }
+
+  public getAuthorizationHeader() {
+    return environment.JWT_AUTH_HEADER_PREFIX + ' ' + this.getToken();
   }
 
   public getProfile(cb: any): void {
@@ -66,13 +66,23 @@ export class AuthService {
     });
   }
 
+  public loginAsGuest(navigateTo = ['/']): void {
+    let expiresInSecs = 24 * 60 * 60;
+    this.setSessionDetails(`guest`, expiresInSecs, 'guest', 'guest');
+    this.router.navigate(navigateTo);
+  }
+
   private setSession(authResult: Auth0DecodedHash): void {
+    this.setSessionDetails(authResult.accessToken, authResult.expiresIn, authResult.idTokenPayload['sub'],
+      authResult.idTokenPayload['nickname']);
+  }
+
+  private setSessionDetails(accessToken: string, expiresInSecs: number, username: string, nickname: string): void {
     // Set the time that the access token will expire at
-    console.log(authResult);
-    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('username', authResult.idTokenPayload['sub']);
-    localStorage.setItem('nickname', authResult.idTokenPayload['nickname']);
+    const expiresAt = JSON.stringify((expiresInSecs * 1000) + new Date().getTime());
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('username', username);
+    localStorage.setItem('nickname', nickname);
     localStorage.setItem('expires_at', expiresAt);
   }
 
@@ -94,5 +104,4 @@ export class AuthService {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
-
 }

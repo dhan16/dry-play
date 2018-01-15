@@ -3,4 +3,5 @@
 </h4>
 <h4 *ngIf="!authService.isAuthenticated()">
   You are not logged in! Please <a (click)="authService.login()">Log In</a> to continue.
+  <a (click)="authService.loginAsGuest()"> (or login as guest) </a>
 </h4>

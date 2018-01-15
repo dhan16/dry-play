@@ -14,11 +14,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { PingComponent } from './ping/ping.component';
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import {environment} from "../environments/environment";
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
+    noClientCheck: true,
     tokenGetter: (() => localStorage.getItem('access_token')),
-    globalHeaders: [{'Content-Type': 'application/json'}],
+    headerPrefix: environment.JWT_AUTH_HEADER_PREFIX,
   }), http, options);
 }
 
