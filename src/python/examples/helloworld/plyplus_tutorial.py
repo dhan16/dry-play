@@ -13,8 +13,7 @@ parser2 = Grammar("""
     @nodata_keyword: 'OIL' | 'WATER' ;
     data_keyword_rule: keyword_keyword keyword_data '/';
     @keyword_keyword: 'DIMENS' | 'GRIDOPTS' | 'DRSDT' ;
-    keyword_data: (word)* ;
-    word: '\w+' ;
+    keyword_data: ('\w+')* ;
     SPACES: '[ ]+' (%ignore) ;
     NEWLINE: '[\n]+' (%ignore) ;
     """)
