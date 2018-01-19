@@ -43,19 +43,20 @@ parser2 = Grammar("""
     """)
 
 
+def __handle(section_token, keyword_token, keyword_data):
+    print('Section {} Keyword {} has data:{}'.format(section_token, keyword_token, keyword_data))
+
+
 def parse_datafile(filename):
     with open(filename, "r") as f:
         content = f.read()
         r2 = parser2.parse(content)
         sections = r2.tail
-        print('Found {} sections'.format(len(sections)))
         for section in sections:
             section_token, keywords = __split(section)
-            print('Section {} has {} keywords'.format(section_token, len(keywords)))
             for keyword in keywords:
                 keyword_token, keyword_datas = __split(keyword)
-                print('Keyword {} has {} datas:{}'.format(keyword_token, len(keyword_datas),
-                                                          __keyword_data(keyword_datas)))
+                __handle(section_token, keyword_token, __keyword_data(keyword_datas))
 
 
 if __name__ == '__main__':
