@@ -4,7 +4,7 @@ DIMENS
 30 30 333 /
 
 GRIDOPTS
-  YES /
+  'YES' 0 /
 
 OIL
 
