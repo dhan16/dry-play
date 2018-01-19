@@ -1,19 +1,11 @@
 RUNSPEC
-
 DIMENS
 30 30 333 /
-
 GRIDOPTS
   'YES' 0 /
-
 OIL
-
 WATER
-
 SCHEDULE
-
 DRSDT
  0 /
-
-
 END
