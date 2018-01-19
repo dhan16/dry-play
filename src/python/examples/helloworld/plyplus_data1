@@ -2,7 +2,10 @@ RUNSPEC
 DIMENS
 30 30 333 /
 GRIDOPTS
-  'YES' 0 /
+  'YES' 0
+  'NO' 0 /
+  'MAYBE' 1 /
+/
 OIL
 WATER
 SCHEDULE

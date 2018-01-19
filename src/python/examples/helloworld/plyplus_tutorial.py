@@ -10,8 +10,8 @@ parser2 = Grammar("""
     section_token: 'RUNSPEC' | 'SCHEDULE' ;
     section_data: (keyword_rule)+ ;
     @keyword_rule: nodata_token | data_keyword_rule ;
-    @nodata_token: 'OIL' | 'WATER' ;
-    data_keyword_rule: data_token keyword_data;
+    nodata_token: 'OIL' | 'WATER' ;
+    data_keyword_rule: data_token (keyword_data)+;
     data_token: 'DIMENS' | 'GRIDOPTS' | 'DRSDT' ;
     keyword_data: '.+' ;
     NEWLINE: '[\n]+' (%ignore) ;
