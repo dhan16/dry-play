@@ -13,8 +13,8 @@ parser2 = Grammar("""
     @nodata_token: 'OIL' | 'WATER' ;
     data_keyword_rule: data_token keyword_data '/';
     data_token: 'DIMENS' | 'GRIDOPTS' | 'DRSDT' ;
-    keyword_data: ('\w+')* ;
-    SPACES: '[ ]+' (%ignore) ;
+    keyword_data: (char)+ ;
+    char: '\w' | ' ' ;
     NEWLINE: '[\n]+' (%ignore) ;
     """)
 filename = os.path.join(os.path.dirname(__file__), 'plyplus_data1')
