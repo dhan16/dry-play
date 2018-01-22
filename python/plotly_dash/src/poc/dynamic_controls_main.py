@@ -2,7 +2,7 @@ import dash
 import dash_html_components as html
 from dash.dependencies import Output, Input, State
 
-from rmine.analytics.app.poc.ui.dynamic_controls import DynamicControls
+from poc.ui.dynamic_controls import DynamicControls
 
 app = dash.Dash()
 app.config.supress_callback_exceptions = True
