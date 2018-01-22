@@ -2,39 +2,17 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Auth0 - Angular</a>
-
-      <button
-        class="btn btn-primary btn-margin"
-        routerLink="/">
-          Home
-      </button>
-
-      <button
-        class="btn btn-primary btn-margin"
-        *ngIf="authService.isAuthenticated()"
-        routerLink="/profile">
+      <button class="btn btn-primary btn-margin" routerLink="/">Home</button>
+      <button class="btn btn-primary btn-margin" *ngIf="authService.isAuthenticated()" routerLink="/profile">
           Profile
       </button>
-
-      <button
-        class="btn btn-primary btn-margin"
-        routerLink="/ping">Ping
-      </button>
-
-      <button
-        class="btn btn-primary btn-margin"
-        *ngIf="!authService.isAuthenticated()"
-        (click)="authService.login()">
+      <button class="btn btn-primary btn-margin" routerLink="/ping">Ping</button>
+      <button class="btn btn-primary btn-margin" *ngIf="!authService.isAuthenticated()" (click)="authService.login()">
           Log In
       </button>
-
-      <button
-        class="btn btn-primary btn-margin"
-        *ngIf="authService.isAuthenticated()"
-        (click)="authService.logout()">
+      <button class="btn btn-primary btn-margin" *ngIf="authService.isAuthenticated()" (click)="authService.logout()">
           Log Out
       </button>
-
     </div>
   </div>
 </nav>
