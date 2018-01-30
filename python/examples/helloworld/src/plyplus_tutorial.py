@@ -67,4 +67,6 @@ def parse_datafile(filename):
 
 
 if __name__ == '__main__':
-    parse_datafile(os.path.join(os.path.dirname(__file__), 'plyplus_data1'))
+    parse_datafile(os.path.join(os.path.dirname(os.path.dirname(__file__)),
+                                'resources',
+                                'plyplus'))
