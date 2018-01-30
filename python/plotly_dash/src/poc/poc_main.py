@@ -6,7 +6,7 @@ from poc.funcs.columnstats import attach_to_app
 
 datadir = os.path.join(
     os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-    'data',
+    'resources',
     'poc')
 file = os.path.join(datadir, 'data.csv')
 
