@@ -31,7 +31,14 @@ def __keyword_data(keyword_datas: List[STree]):
     return '\n'.join(lines)
 
 
-parser2 = Grammar("""
+keywords = [
+    'OIL',
+    'WATER',
+    'DIMENS',
+    'GRIDOPTS',
+    'DRSDT',
+]
+grammar = """
     start: (section)+ 'END' ;
     section: section_token section_data ;
     section_token: 'RUNSPEC' | 'SCHEDULE' ;
@@ -40,9 +47,9 @@ parser2 = Grammar("""
     keyword_token: 'OIL' | 'WATER' | 'DIMENS' | 'GRIDOPTS' | 'DRSDT' ;
     keyword_data: '.+' ;
     NEWLINE: '[\n]+' (%ignore) ;
-    """)
+    """.format('|'.join(["'{}'".format(k) for k in keywords]))
 
-
+parser2 = Grammar(grammar)
 def __handle(section_token, keyword_token, keyword_data):
     print('Section {} Keyword {} has data:{}'.format(section_token, keyword_token, keyword_data))
 
