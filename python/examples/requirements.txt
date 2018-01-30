@@ -1,6 +1,0 @@
-matplotlib
-numpy
-pandas
-plyplus
-PyQt5
-spyder

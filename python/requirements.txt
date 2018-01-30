@@ -1,0 +1,10 @@
+dash_core_components
+dash_html_components
+dash_renderer
+matplotlib
+numpy
+pandas
+pandas_datareader
+plyplus
+PyQt5
+spyder
