@@ -9,4 +9,4 @@ if __name__ == '__main__':
     col0 = cols[0]
     col1 = cols[1]
     for index, row in df.iterrows():
-        print("'{}': '{}',".format(row[col0], row[col1]))
+        print("'{}': '{}',".format(row[col0].strip(), row[col1].strip()))
