@@ -8,3 +8,5 @@ pandas_datareader
 plyplus
 PyQt5
 spyder
+xlrd
+
