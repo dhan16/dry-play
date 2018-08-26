@@ -8,8 +8,8 @@ export const environment = {
   JWT_AUTH_HEADER_PREFIX: 'JWT',
   auth0: {
     // client
-    clientID: 'SfrzkiBBTmMnjS25roizCrJO3PbwDB3E',
-    domain: 'dry-play.auth0.com',
+    clientID: '<client_id>',
+    domain: '<example>.auth0.com',
     callbackURL: 'http://localhost:4200',
     // api
     audience: 'https://dry-play-api1.com',
